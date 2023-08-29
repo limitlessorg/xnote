@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 用户
+model User {
+  id       String  @id @default(cuid()) @db.VarChar(64)
+  name     String  @map("name") @db.VarChar(255)
+  code     String  @unique() @map("code") @db.VarChar(64)
+  password String  @map("password") @db.VarChar(64)
+  email    String? @unique @map("email") @db.VarChar(64)
+  phone    String? @unique @map("phone") @db.VarChar(32)
+  wechat   String? @unique @map("wechat") @db.VarChar(64)
+  logo     String? @map("logo") @db.VarChar(255)
+  remark   String? @map("remark") @db.VarChar(255)
+  spaces   Space[]
+
+  @@map("x_user")
+}
+
+// 空间类型
+enum SpaceType {
+  personal
+  team
+}
+
+// 空间
+model Space {
+  id        String    @id @default(cuid()) @db.VarChar(64)
+  spaceType SpaceType
+  name      String    @map("name") @db.VarChar(255)
+  logo      String?   @map("logo") @db.VarChar(255)
+  users     User[]
+  blocks    Block[]
+
+  @@map("x_space")
+}
+
+// Block
+model Block {
+  id        String   @id @default(cuid()) @db.VarChar(32)
+  spaceId   String   @db.VarChar(64)
+  space     Space    @relation(fields: [spaceId], references: [id])
+  blockType String   @db.VarChar(64)
+  content   Json?
+  layout    Json?
+  parentId  String?  @db.VarChar(32)
+  parent    Block?   @relation("ParentChildren", fields: [parentId], references: [id])
+  children  Block[]  @relation("ParentChildren")
+  container Block[]  @relation("ContainerItems")
+  items     Block[]  @relation("ContainerItems")
+  updatedAt DateTime @updatedAt
+
+  @@map("x_block")
+}

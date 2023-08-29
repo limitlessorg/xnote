@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '/node_modules/react-grid-layout/css/styles.css';
+@import '/node_modules/react-resizable/css/styles.css';
+
+@import '~antd/dist/reset.css';
+
+//////////////  antd  //////////////////////////////
+
+////////////////  覆盖 用户代理样式表 /////////////////////////
+
+////////////////  滚动条优化 /////////////////////////
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+  overflow: visible;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 10px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d8d8d8;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #e1e1e1;
+}
+
+//////////////  ProseMirror  //////////////////////////////
+
+.ProseMirror:focus-visible {
+  outline: none;
+}
+
+.ProseMirror p.is-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror {
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+}
+
+ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    > label {
+      flex: 0 0 auto;
+      margin-right: 0.5rem;
+    }
+    > div {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+h1 {
+  display: block;
+  font-size: 2.2em;
+  font-weight: bold;
+}
+
+h2 {
+  display: block;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+h3 {
+  display: block;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+h4 {
+  display: block;
+  font-weight: bold;
+}
+
+
+.ProseMirror {
+  table {
+    border-collapse: collapse;
+    margin: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+
+    td,
+    th {
+      border: 1.5px solid #e1e6eb;
+      box-sizing: border-box;
+      min-width: 1em;
+      padding: 3px 5px;
+      position: relative;
+      vertical-align: top;
+
+      > * {
+        margin-bottom: 0;
+      }
+    }
+
+    th {
+      background-color: #f1f3f5;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .selectedCell:after {
+      background: rgba(200, 200, 255, 0.4);
+      content: "";
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .column-resize-handle {
+      background-color: #adf;
+      bottom: -2px;
+      position: absolute;
+      right: -2px;
+      pointer-events: none;
+      top: 0;
+      width: 4px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
+}
+
+//////////////  ProseMirror  //////////////////////////////
