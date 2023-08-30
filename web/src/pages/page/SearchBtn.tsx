@@ -35,7 +35,7 @@ const SearchBtn: React.FC = () => {
         width={700}
         footer={null}
       >
-        <Search />
+        <Search callback={() => setIsModalOpen(false)} />
       </Modal>
     </>
   )

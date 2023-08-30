@@ -91,7 +91,7 @@ export class BlockController {
   ) {
     return this.prismaSrv.block.findMany({
       where: { ...where, spaceId: payload.spaceId },
-      orderBy: { updatedAt: 'desc' },
+      orderBy: { id: 'asc' },
     });
   }
 
@@ -124,6 +124,9 @@ export class BlockController {
     let blocks = await this.prismaSrv.block.findMany({
       where: {
         spaceId: payload.spaceId,
+      },
+      include: {
+        container: true,
       },
     });
     blocks = blocks.filter((b) => {

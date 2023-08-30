@@ -10,7 +10,7 @@ export enum SpaceType {
  * 空间
  */
 export type Space = {
-  id?: string
+  id: string
   spaceType: SpaceType
   name: string
   logo?: string

@@ -81,7 +81,7 @@ const PersonSetting: React.FC = () => {
             onChange={handleChange}
           >
             {user?.logo ? (
-              <Avatar src={user?.logo} alt="avatar" size={100} />
+              <Avatar src={user?.logo} alt="avatar" size={102} />
             ) : (
               <div>
                 <PlusOutlined rev={'default'} />

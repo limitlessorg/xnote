@@ -10,6 +10,7 @@ export type Block = {
   content: any
   parentId?: string
   containerId?: string
+  container?: Block[]
   children: Block[]
   // 容器布局
   layout: Layout[]

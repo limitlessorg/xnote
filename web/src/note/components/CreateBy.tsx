@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * 创建引导
  */
-const CreateBy: React.FC = () => {
+const CreateIndex: React.FC = () => {
   return (
     <div className="m-2">
       <div className="cursor-pointer rounded p-1 text-base hover:bg-slate-100">
@@ -38,4 +38,4 @@ const CreateBy: React.FC = () => {
   )
 }
 
-export default CreateBy
+export default CreateIndex

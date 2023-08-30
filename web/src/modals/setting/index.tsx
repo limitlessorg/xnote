@@ -1,8 +1,9 @@
+import { TeamOutlined, UserOutlined } from '@ant-design/icons'
 import { Menu, MenuProps } from 'antd'
 import React, { useState } from 'react'
 import { RiDatabaseLine, RiGiftLine, RiGlobalLine } from 'react-icons/ri'
 import PersonSetting from './PersonSetting'
-import { UserOutlined, TeamOutlined } from '@ant-design/icons'
+import SpaceSetting from './SpaceSetting'
 import ThemeSetting from './ThemeSetting'
 
 /**
@@ -30,7 +31,7 @@ const Setting: React.FC = () => {
       label: '空间',
       key: 'space',
       icon: <TeamOutlined rev={undefined} />,
-      content: <PersonSetting />
+      content: <SpaceSetting />
     },
     {
       label: '主题',

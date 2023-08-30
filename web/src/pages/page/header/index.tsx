@@ -23,7 +23,7 @@ const Header: React.FC = () => {
   }
   return (
     <div className="flex justify-between" style={style}>
-      <div className="flex py-2">
+      <div className="flex cursor-pointer py-2">
         <Tooltip mouseLeaveDelay={0} mouseEnterDelay={0.5} placement="bottom">
           <a
             className="my-1 ml-3 rounded px-1 text-base hover:bg-neutral-200"

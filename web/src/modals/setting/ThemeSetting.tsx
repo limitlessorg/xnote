@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Form, Input, InputNumber, Radio } from 'antd'
+import { Button, ColorPicker, Form, InputNumber, Radio } from 'antd'
+import React, { useState } from 'react'
 import useSettingStore, { ITheme, defaultITheme } from 'store/setting'
 
 /**
@@ -7,8 +7,9 @@ import useSettingStore, { ITheme, defaultITheme } from 'store/setting'
  */
 const ThemeSetting: React.FC = () => {
   const { theme, setTheme } = useSettingStore()
+  const [colorPrimary, setColorPrimary] = useState<string>(theme.colorPrimary)
   const onFinish = (theme: ITheme) => {
-    setTheme(theme)
+    setTheme({ ...theme, colorPrimary })
     window.location.reload()
   }
   const reset = () => {
@@ -29,7 +30,11 @@ const ThemeSetting: React.FC = () => {
         </Radio.Group>
       </Form.Item>
       <Form.Item label="主色" name="colorPrimary">
-        <Input type="color" />
+        <ColorPicker
+          size="large"
+          value={colorPrimary}
+          onChange={(value) => setColorPrimary(value.toHexString())}
+        />
       </Form.Item>
       <Form.Item label="圆角" name="borderRadius">
         <InputNumber addonAfter={<span>px</span>} max={16} min={0} />

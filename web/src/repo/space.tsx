@@ -12,5 +12,5 @@ export function createSpace(space: Space) {
  * 修改信息
  */
 export function patchSpace(space: Space) {
-  return http.patch(`space`, space)
+  return http.patch(`space/${space.id}`, space)
 }

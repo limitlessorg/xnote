@@ -1,4 +1,4 @@
-import { PlusCircleOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 import { useQueryClient } from '@tanstack/react-query'
 import { Avatar, Button, Divider, Popover, Tag } from 'antd'
 import CreateSpaceModal from 'modals/CreateSpaceModal'
@@ -76,7 +76,7 @@ const WorkSpace: React.FC = () => {
       <Divider className="m-1" />
       <Button
         type="text"
-        icon={<PlusCircleOutlined rev={'default'} />}
+        icon={<PlusOutlined rev={'default'} />}
         block
         onClick={create}
       >

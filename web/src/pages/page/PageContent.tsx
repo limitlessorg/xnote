@@ -129,7 +129,7 @@ const PageContent: React.FC = () => {
 
   return (
     <div className="h-full w-full">
-      <div className="my-4 mx-8">
+      <div className="py-4 px-8">
         <div className="flex justify-between">
           <div></div>
           <PageHeader block={page} />

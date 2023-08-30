@@ -1,13 +1,13 @@
 <div align="center">
 
 <h1 style="border-bottom: none">
-    <b><a href="https://affine.pro">XNote</a></b><br />
+    <b><a href="https://github.com/limitlessorg/xnote">XNote</a></b><br />
     Notion的开源替代方案
     <br>
 </h1>
 
 <p>
-    X 代表Block块，代表一切可能性<br />
+    X 代表 x 因素，代表一切可能性<br />
     自定义Block块，写React Component一样开发Block插件<br />
     丰富Block插件，可以任意组合Block块组合成笔记文档、博客、网页等<br />
 </p>
