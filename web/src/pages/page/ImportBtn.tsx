@@ -1,7 +1,7 @@
-import { Modal, Tooltip } from 'antd'
+import { ImportOutlined } from '@ant-design/icons'
+import { Button, Modal, Tooltip } from 'antd'
 import Import from 'modals/Import'
 import React, { useState } from 'react'
-import { AiOutlineImport } from 'react-icons/ai'
 
 const ImportBtn: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -16,13 +16,13 @@ const ImportBtn: React.FC = () => {
   return (
     <>
       <Tooltip title="导入文件" placement="bottom" mouseLeaveDelay={0}>
-        <div
-          className="m-3 flex cursor-pointer select-none rounded p-1 px-2 hover:bg-neutral-200"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <div className="text-xl">
-            <AiOutlineImport />
-          </div>
+        <div className="m-2">
+          <Button
+            type="text"
+            size="large"
+            icon={<ImportOutlined rev={undefined} />}
+            onClick={() => setIsModalOpen(true)}
+          />
         </div>
       </Tooltip>
       <Modal
@@ -32,7 +32,7 @@ const ImportBtn: React.FC = () => {
         onCancel={handleCancel}
         destroyOnClose={true}
         maskClosable={false}
-        width={650}
+        width={700}
         footer={null}
       >
         <Import />

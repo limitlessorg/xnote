@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Payload } from 'src/const/biz.const';
+import { Payload } from 'src/interface';
 import { ReqPayload } from 'src/share/decorators/space.decorator';
 import { PrismaService } from 'src/share/service/prisma.service';
 import { BlockService } from './block.service';
@@ -91,7 +91,7 @@ export class BlockController {
   ) {
     return this.prismaSrv.block.findMany({
       where: { ...where, spaceId: payload.spaceId },
-      orderBy: { id: 'asc' },
+      orderBy: { updatedAt: 'desc' },
     });
   }
 
@@ -102,22 +102,33 @@ export class BlockController {
    * @returns 结果
    */
   @Patch('update/:id')
-  update(@Param('id') id: string, @Body() data: Prisma.BlockUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() data: Prisma.BlockUpdateInput,
+    @ReqPayload() payload: Payload,
+  ) {
     return this.prismaSrv.block.update({
-      where: { id },
+      where: { id, spaceId: payload.spaceId },
       data,
     });
   }
 
   /**
-   * 删除
-   * @param id 主键
-   * @returns 结果
+   * 搜索
+   * @param value 值
+   * @param payload 载荷信息
+   * @returns Block块
    */
-  @Delete('delete/:id')
-  delete(@Param('id') id: string) {
-    return this.prismaSrv.block.delete({
-      where: { id },
+  @Get('search/:value')
+  async search(@Param('value') value: string, @ReqPayload() payload: Payload) {
+    let blocks = await this.prismaSrv.block.findMany({
+      where: {
+        spaceId: payload.spaceId,
+      },
     });
+    blocks = blocks.filter((b) => {
+      return b.content && JSON.stringify(b.content).indexOf(value) > -1;
+    });
+    return blocks;
   }
 }

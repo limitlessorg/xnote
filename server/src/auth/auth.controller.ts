@@ -4,8 +4,7 @@ import { LoginDto } from 'src/dto/Login.dto';
 import { RegisterDto } from 'src/dto/Register.dto';
 import { ReqPayload } from 'src/share/decorators/space.decorator';
 import { AuthService } from './auth.service';
-import { JwtConstants } from './constants';
-import { Payload } from 'src/const/biz.const';
+import { Payload } from 'src/interface';
 
 @Controller('auth')
 export class AuthController {
@@ -44,7 +43,7 @@ export class AuthController {
     return Object.assign(
       payload,
       { token: this.jwtSrv.sign(payload) },
-      { expiresIn: JwtConstants.expiresIn },
+      { expiresIn: +process.env.EXPRIRES_IN },
     );
   }
 }

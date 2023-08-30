@@ -1,4 +1,10 @@
-import { Block, CreateBlock, UpdateBlock } from 'models/block'
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExportOutlined,
+  PlusOutlined
+} from '@ant-design/icons'
+import { CreateBlock, UpdateBlock } from 'models/block'
 import { Layout } from 'react-grid-layout'
 import { arrToTreeNode } from 'utils'
 import http from './http'
@@ -46,6 +52,13 @@ export function findOne(id: string) {
 }
 
 /**
+ * 搜索
+ */
+export function searchBlock(value: string) {
+  return http.get(`block/search/${value}`)
+}
+
+/**
  * 查找Block树
  */
 export function treeBlock() {
@@ -59,31 +72,50 @@ export function treeBlock() {
         item.operations = [
           {
             key: 'CreateBlock',
-            label: '创建'
+            label: (
+              <div className="flex">
+                <div>
+                  <PlusOutlined rev={undefined} />
+                </div>
+                <div className="pl-2">创建页面</div>
+              </div>
+            )
           },
           {
             key: 'ReName',
-            label: '重命名'
+            label: (
+              <div className="flex">
+                <div>
+                  <EditOutlined rev={undefined} />
+                </div>
+                <div className="pl-2">重命名</div>
+              </div>
+            )
           },
           {
             key: 'DeletePage',
-            label: '删除'
+            label: (
+              <div className="flex">
+                <div>
+                  <DeleteOutlined rev={undefined} />
+                </div>
+                <div className="pl-2">删除</div>
+              </div>
+            )
           },
           {
             key: 'ExportPage',
-            label: '导出'
+            label: (
+              <div className="flex">
+                <div>
+                  <ExportOutlined rev={undefined} />
+                </div>
+                <div className="pl-2">导出</div>
+              </div>
+            )
           }
         ]
       }
     })
   })
-}
-
-/**
- * 获取容器项
- * @param id 容器ID
- * @returns Block[]
- */
-export function listContainerItems(id: string) {
-  return http.get(`blockContainer/listContainerItems/${id}`)
 }

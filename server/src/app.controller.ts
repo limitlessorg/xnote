@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Payload } from './const/biz.const';
+import { Payload } from './interface';
 import { ReqPayload } from './share/decorators/space.decorator';
 
 @Controller()

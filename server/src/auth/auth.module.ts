@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
-import { JwtConstants } from './constants';
 import { AuthController } from './auth.controller';
 import { ShareModule } from 'src/share/share.module';
 import { JwtStrategy } from './jwt.strategy';
@@ -12,8 +11,8 @@ import { JwtStrategy } from './jwt.strategy';
     ShareModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: JwtConstants.secret,
-      signOptions: { expiresIn: JwtConstants.expiresIn },
+      secret: process.env.TOKEN_SECRET,
+      signOptions: { expiresIn: +process.env.EXPRIRES_IN },
     }),
   ],
   providers: [AuthService, JwtStrategy],

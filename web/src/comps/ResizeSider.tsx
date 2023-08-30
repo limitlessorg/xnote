@@ -13,8 +13,8 @@ interface IResizeSiderProps {
  * 可伸缩侧边栏
  */
 const ResizeSider: React.FC<IResizeSiderProps> = ({
-  minWidth = 100,
-  maxWidth = 600,
+  minWidth = 200,
+  maxWidth = 900,
   children
 }) => {
   const { collapsed, headerHeight, siderWidth, setSiderWidth } =

@@ -1,6 +1,6 @@
-import { Tooltip } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import { Button, Tooltip } from 'antd'
 import React from 'react'
-import { RiAddLine } from 'react-icons/ri'
 
 export type CreatePageBtnProp = { click: () => void }
 /**
@@ -10,13 +10,13 @@ const CreatePageBtn: React.FC<CreatePageBtnProp> = ({ click }) => {
   return (
     <>
       <Tooltip title="创建新页面" placement="bottom" mouseLeaveDelay={0}>
-        <div
-          className="m-3 flex cursor-pointer select-none rounded p-1 px-2 hover:bg-neutral-200"
-          onClick={click}
-        >
-          <div className="text-xl">
-            <RiAddLine />
-          </div>
+        <div className="m-2">
+          <Button
+            type="text"
+            size="large"
+            icon={<PlusOutlined rev={undefined} />}
+            onClick={click}
+          />
         </div>
       </Tooltip>
     </>

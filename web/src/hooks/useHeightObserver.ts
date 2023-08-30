@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-// 定义一个自定义 Hook，接收一个元素 ref 和一个回调函数
+/**
+ * 监听元素高度变化
+ * @param ref 元素 ref
+ * @param callback 回调函数
+ * @returns height 高度
+ */
 export function useHeightObserver(
   ref: React.RefObject<HTMLElement>,
   callback: (newHeight: number) => void

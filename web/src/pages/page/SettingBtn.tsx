@@ -1,7 +1,7 @@
-import { Modal, Tooltip } from 'antd'
-import Setting from 'modals/Setting'
+import { SettingOutlined } from '@ant-design/icons'
+import { Button, Modal, Tooltip } from 'antd'
+import Setting from 'modals/setting'
 import React, { useState } from 'react'
-import { RiSettings3Line } from 'react-icons/ri'
 
 const SettingBtn: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -16,13 +16,13 @@ const SettingBtn: React.FC = () => {
   return (
     <>
       <Tooltip title="打开设置" placement="bottom" mouseLeaveDelay={0}>
-        <div
-          className="m-3 flex cursor-pointer select-none rounded p-1 px-2 hover:bg-neutral-200"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <div className="text-xl">
-            <RiSettings3Line />
-          </div>
+        <div className="m-2">
+          <Button
+            type="text"
+            size="large"
+            icon={<SettingOutlined rev={undefined} />}
+            onClick={() => setIsModalOpen(true)}
+          />
         </div>
       </Tooltip>
       <Modal
@@ -32,7 +32,7 @@ const SettingBtn: React.FC = () => {
         onCancel={handleCancel}
         destroyOnClose={true}
         maskClosable={false}
-        width={850}
+        width={800}
         footer={null}
       >
         <Setting />

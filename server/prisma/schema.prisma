@@ -12,7 +12,7 @@ datasource db {
 
 // 用户
 model User {
-  id       String  @id @default(cuid()) @db.VarChar(64)
+  id       String  @id @default(nanoid()) @db.VarChar(64)
   name     String  @map("name") @db.VarChar(255)
   code     String  @unique() @map("code") @db.VarChar(64)
   password String  @map("password") @db.VarChar(64)
@@ -34,7 +34,7 @@ enum SpaceType {
 
 // 空间
 model Space {
-  id        String    @id @default(cuid()) @db.VarChar(64)
+  id        String    @id @default(nanoid()) @db.VarChar(64)
   spaceType SpaceType
   name      String    @map("name") @db.VarChar(255)
   logo      String?   @map("logo") @db.VarChar(255)
@@ -46,7 +46,7 @@ model Space {
 
 // Block
 model Block {
-  id        String   @id @default(cuid()) @db.VarChar(32)
+  id        String   @id @default(nanoid()) @db.VarChar(32)
   spaceId   String   @db.VarChar(64)
   space     Space    @relation(fields: [spaceId], references: [id])
   blockType String   @db.VarChar(64)

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
-import { JwtConstants } from './auth/constants';
-import { Payload } from './const/biz.const';
+import { Payload } from './interface';
 import { PrismaService } from './share/service/prisma.service';
 
 @Injectable()
@@ -25,6 +24,7 @@ export class AppService {
         spaces: true,
       },
     });
+    // 2、获取空间、载荷
     const curSpace =
       user.spaces.find((s) => s.id === spaceId) || user.spaces[0];
     const newPayload: Payload = {
@@ -49,7 +49,7 @@ export class AppService {
       spaces: user.spaces,
       auth: {
         token: this.authSrv.sign(newPayload),
-        expiresIn: new Date().getTime() + JwtConstants.expiresIn,
+        expiresIn: new Date().getTime() + +process.env.EXPRIRES_IN,
       },
     };
     return appData;

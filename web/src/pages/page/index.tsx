@@ -24,9 +24,12 @@ import ImportBtn from './ImportBtn'
 import SearchBtn from './SearchBtn'
 import SettingBtn from './SettingBtn'
 import WorkSpace from './WorkSpace'
+import { AppstoreOutlined } from '@ant-design/icons'
+import useSpaceStore from 'store/space'
 
 const Page: React.FC = () => {
   const navigate = useNavigate()
+  const { space } = useSpaceStore()
   const [operationKey, setOperationKey] = useState<string>()
   const [node, setNode] = useState<DataNode>()
   const { lastPathKey } = usePathKey()
@@ -34,8 +37,8 @@ const Page: React.FC = () => {
   const queryClient = useQueryClient()
 
   // 合并查询
-  const { data: nodes } = useQuery({
-    queryKey: ['treeBlock'],
+  const { data: nodes, refetch } = useQuery({
+    queryKey: ['treeBlock', space?.id],
     queryFn: treeBlock
   })
 
@@ -43,6 +46,10 @@ const Page: React.FC = () => {
   useEffect(() => {
     setNodes(nodes || [])
   }, [nodes, setNodes])
+
+  useEffect(() => {
+    refetch()
+  }, [refetch, space])
 
   // 创建块
   const create = (parentBlock?: Block) => {
@@ -128,11 +135,13 @@ const Page: React.FC = () => {
       <ResizeSider>
         <div className="flex h-full max-h-full w-full flex-col">
           <WorkSpace />
-          <div className="flex pl-3">
-            <SearchBtn />
-            <ImportBtn />
-            <SettingBtn />
-            <CreatePageBtn click={create} />
+          <div className="flex justify-center">
+            <div className="flex">
+              <SearchBtn />
+              <ImportBtn />
+              <SettingBtn />
+              <CreatePageBtn click={create} />
+            </div>
           </div>
           <div
             className="overflow-y-hidden hover:overflow-y-auto"
@@ -161,7 +170,12 @@ const Page: React.FC = () => {
             />
           </div>
           <div>
-            <Button type="text" block size="large">
+            <Button
+              type="text"
+              block
+              size="large"
+              icon={<AppstoreOutlined rev={undefined} />}
+            >
               模板中心
             </Button>
           </div>

@@ -2,13 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { SpaceType, User } from '@prisma/client';
 import { AES, enc } from 'crypto-js';
-import { AppConst } from 'src/app.const';
-import { Payload } from 'src/const/biz.const';
+import { Payload } from 'src/interface';
 import { LoginDto } from 'src/dto/Login.dto';
 import { RegisterDto } from 'src/dto/Register.dto';
 import { R } from 'src/share/dto/res.dto';
 import { PrismaService } from 'src/share/service/prisma.service';
-import { JwtConstants } from './constants';
 
 @Injectable()
 export class AuthService {
@@ -34,7 +32,7 @@ export class AuthService {
     };
     return {
       token: this.jwtSrv.sign(payload),
-      expiresIn: JwtConstants.expiresIn,
+      expiresIn: +process.env.EXPRIRES_IN,
     };
   }
 
@@ -55,7 +53,10 @@ export class AuthService {
       data: {
         name: registerDto.code,
         code: registerDto.code,
-        password: AES.encrypt(registerDto.password, AppConst.key).toString(),
+        password: AES.encrypt(
+          registerDto.password,
+          process.env.PASSWORD_SALT,
+        ).toString(),
         spaces: {
           create: [{ spaceType: 'personal', name: '个人空间' }],
         },
@@ -71,7 +72,7 @@ export class AuthService {
       payload,
       { logo: user.logo },
       { token: this.jwtSrv.sign(payload) },
-      { expiresIn: JwtConstants.expiresIn },
+      { expiresIn: +process.env.EXPRIRES_IN },
     );
   }
 
@@ -81,7 +82,7 @@ export class AuthService {
    */
   sign(
     payload: string | any | Buffer = {},
-    options: JwtSignOptions = { secret: JwtConstants.secret },
+    options: JwtSignOptions = { secret: process.env.TOKEN_SECRET },
   ): string {
     return this.jwtSrv.sign(payload, options);
   }
@@ -100,7 +101,8 @@ export class AuthService {
     if (!user) {
       return { result: false, msg: '用户不存在' };
     } else if (
-      password === AES.decrypt(user.password, AppConst.key).toString(enc.Utf8)
+      password ===
+      AES.decrypt(user.password, process.env.PASSWORD_SALT).toString(enc.Utf8)
     ) {
       return { result: true, user: user };
     } else {
@@ -114,7 +116,7 @@ export class AuthService {
    */
   verify(
     token: string,
-    options: JwtSignOptions = { secret: JwtConstants.secret },
+    options: JwtSignOptions = { secret: process.env.TOKEN_SECRET },
   ): any {
     return this.jwtSrv.verify(token, options);
   }

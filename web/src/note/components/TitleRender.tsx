@@ -1,11 +1,11 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { Badge, Dropdown, MenuProps } from 'antd'
 import Icon from 'comps/Icon'
 import { Block, UpdateBlock } from 'models/block'
 import { RiMoreFill } from 'react-icons/ri'
+import { updateBlock } from 'repo'
 import { DataNode } from 'types'
 import { BlockType } from '../blocks'
-import { updateBlock } from 'repo'
-import { useQueryClient } from '@tanstack/react-query'
 
 export interface ITitleRenderProps {
   node: DataNode

@@ -1,3 +1,6 @@
+/**
+ * 用户
+ */
 export type User = {
   id: string
   name: string

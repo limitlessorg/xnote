@@ -1,5 +1,10 @@
 import React from 'react'
-import { RiFileWordLine, RiHtml5Line, RiMarkdownLine } from 'react-icons/ri'
+import {
+  RiFileWordLine,
+  RiHtml5Line,
+  RiMarkdownLine,
+  RiFile4Line
+} from 'react-icons/ri'
 
 /**
  * 导入
@@ -17,9 +22,9 @@ const Import: React.FC = () => {
         </div>
         <div className="m-2 flex w-1/2 border-spacing-1 cursor-pointer border border-solid p-4 shadow-xl hover:bg-neutral-200">
           <div className="p-2 text-4xl">
-            <RiMarkdownLine />
+            <RiFile4Line />
           </div>
-          <div className="p-1 text-lg font-bold">CSV</div>
+          <div className="p-1 text-lg font-bold">Json</div>
         </div>
       </div>
       <div className="flex h-28">
