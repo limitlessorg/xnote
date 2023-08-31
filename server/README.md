@@ -27,6 +27,7 @@ npm install
 4. 初始化数据库
 ```bash
 prisma migrate deploy
+prisma generate
 ``` 
 5. 启动服务
    
