@@ -30,7 +30,7 @@ const PassportLogin: React.FC = () => {
       setLoading(false)
       if (res.token) {
         localStorage.setItem('token', res.token)
-        const appData: any = await getAppData(space?.spaceId)
+        const appData: any = await getAppData(space?.id)
         localStorage.setItem('token', appData.auth.token)
         localStorage.setItem('expiresIn', appData.auth.expiresIn)
         setUser(appData.user)
@@ -47,14 +47,13 @@ const PassportLogin: React.FC = () => {
   }
 
   return (
-    <>
+    <div>
       <Tabs
         size="large"
         items={[
-          { label: <div className="px-4">密码登录</div>, key: 'password' },
-          { label: <div className="px-4">扫码登录</div>, key: 'qrcode' }
+          { label: <div className="px-4">密码登录</div>, key: 'password' }
+          // { label: <div className="px-4">扫码登录</div>, key: 'qrcode' }
         ]}
-        className="py-4"
       />
       <Form onFinish={onFinish}>
         <Form.Item
@@ -91,11 +90,11 @@ const PassportLogin: React.FC = () => {
         <Form.Item>
           <div className="flex justify-between">
             <Link to="/passport/register">注册用户</Link>
-            <Link to="/passport/forget">忘记密码</Link>
+            {/* <Link to="/passport/forget">忘记密码</Link> */}
           </div>
         </Form.Item>
       </Form>
-    </>
+    </div>
   )
 }
 export default PassportLogin

@@ -1,28 +1,20 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { isMobile } from 'utils'
+import useSettingStore from 'store/setting'
 
+/**
+ * 登录、注册页布局
+ */
 const PassportLayout: React.FC = () => {
-  const result = isMobile()
+  const { theme } = useSettingStore()
   return (
-    <div className="h-full w-full">
-      {!result && (
-        <>
-          <img
-            className="absolute left-10 bottom-0 h-4/5 w-1/2 bg-auto"
-            src="/passport.png"
-            alt=""
-          />
-          <div className="absolute top-1/4 right-40 h-3/5 w-1/4">
-            <Outlet />
-          </div>
-        </>
-      )}
-      {result && (
-        <div className="px-8 py-24">
-          <Outlet />
+    <div className="flex h-full w-full justify-center">
+      <div className="w-72 pt-28">
+        <div className="flex justify-center">
+          <h1 style={{ color: theme.colorPrimary }}>XNote 笔记</h1>
         </div>
-      )}
+        <Outlet />
+      </div>
     </div>
   )
 }

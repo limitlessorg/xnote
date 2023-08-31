@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Steps } from 'antd'
+import { Button, Form, Input, message, Steps, Tabs } from 'antd'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -28,14 +28,11 @@ const PassportRegister: React.FC = () => {
 
   return (
     <div>
-      <Form.Item>
-        <Steps current={current}>
-          {steps.map((item) => (
-            <Step key={item} title={item} />
-          ))}
-        </Steps>
-      </Form.Item>
-
+      <Tabs
+        size="large"
+        items={[{ label: <div className="px-4">注册</div>, key: 'password' }]}
+        className="py-4"
+      />
       <div>
         <Form onFinish={register}>
           <Form.Item
