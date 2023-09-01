@@ -9,7 +9,7 @@ import Header from 'pages/page/header'
 import { BlockType } from 'note/blocks'
 import TitleRender from 'note/components/TitleRender'
 import { useEffect, useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import {
   createBlock,
   delBlock,
@@ -27,7 +27,14 @@ import WorkSpace from './WorkSpace'
 import { AppstoreOutlined } from '@ant-design/icons'
 import useSpaceStore from 'store/space'
 
+// 页面默认名称
+const defaultPageName = '新页面'
+
+/**
+ * 页面
+ */
 const Page: React.FC = () => {
+  const { id } = useParams()
   const navigate = useNavigate()
   const { space } = useSpaceStore()
   const [operationKey, setOperationKey] = useState<string>()
@@ -57,9 +64,10 @@ const Page: React.FC = () => {
       parentId: parentBlock?.id,
       blockType: BlockType.Page,
       content: {
-        name: '新页面',
+        name: defaultPageName,
         icon: '📄'
-      }
+      },
+      remark: defaultPageName
     }
     createBlock(block).then((blockItem: Block) => {
       queryClient.resetQueries(['treeBlock'])
@@ -119,6 +127,9 @@ const Page: React.FC = () => {
     } else if (operationKey == 'DeletePage') {
       delBlock(node.key as string).then((res) => {
         queryClient.resetQueries(['treeBlock'])
+        if (node.key == id) {
+          navigate('/page')
+        }
       })
     } else if (operationKey == 'ExportPage') {
       findOne(node.key as string).then((res) => {
@@ -154,7 +165,7 @@ const Page: React.FC = () => {
               blockNode={true}
               treeData={nodes}
               selectedKeys={[lastPathKey]}
-              draggable
+              // draggable
               autoExpandParent={true}
               titleRender={(node) => (
                 <TitleRender

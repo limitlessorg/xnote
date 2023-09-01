@@ -1,7 +1,9 @@
+import { useDebounceFn } from '@ant-design/pro-utils'
 import { useQueryClient } from '@tanstack/react-query'
-import { Badge, Dropdown, MenuProps } from 'antd'
+import { Badge, Dropdown, Input, MenuProps } from 'antd'
 import Icon from 'comps/Icon'
 import { Block, UpdateBlock } from 'models/block'
+import { useState } from 'react'
 import { RiMoreFill } from 'react-icons/ri'
 import { updateBlock } from 'repo'
 import { DataNode } from 'types'
@@ -21,8 +23,30 @@ const TitleRender: React.FC<ITitleRenderProps> = ({
   handleNodeClick,
   handleOperationClick
 }) => {
+  const [operationKey, setOperationKey] = useState<string>()
   const queryClient = useQueryClient()
   const block = node as unknown as Block
+
+  // 重命名
+  const reName = (name: string) => {
+    if (name) {
+      const newBlock = {
+        id: block.id,
+        parentId: block.parentId,
+        blockType: BlockType.Page,
+        content: {
+          name,
+          icon: '📄'
+        },
+        remark: name
+      }
+      updateBlock(newBlock).then((res) => {
+        setOperationKey(undefined)
+        queryClient.resetQueries(['treeBlock'])
+      })
+    }
+  }
+
   /**
    * 修改图标
    * @param icon 图标
@@ -39,13 +63,14 @@ const TitleRender: React.FC<ITitleRenderProps> = ({
   }
 
   const onOperationClick: MenuProps['onClick'] = ({ key }) => {
+    setOperationKey(key)
     handleOperationClick(key, node)
   }
 
   return (
     <div className="group flex w-full justify-between">
       <div className="flex w-full">
-        <div className="px-1 text-base hover:bg-neutral-200">
+        <div className="flex px-1 text-base hover:bg-neutral-200">
           <Icon
             icon={block.content.icon}
             readonly={false}
@@ -55,11 +80,19 @@ const TitleRender: React.FC<ITitleRenderProps> = ({
           />
         </div>
 
-        <div className="w-full" onClick={() => handleNodeClick(node)}>
-          <Badge count={node.badge || 0} size="small">
-            {block.content.name}
-          </Badge>
-        </div>
+        {operationKey == 'ReName' ? (
+          <Input
+            defaultValue={block.content.name}
+            size="small"
+            onBlur={(e) => reName(e.target.value)}
+          />
+        ) : (
+          <div className="w-full" onClick={() => handleNodeClick(node)}>
+            <Badge count={node.badge || 0} size="small">
+              {block.content.name}
+            </Badge>
+          </div>
+        )}
       </div>
       <div className="mt-0.5 flex">
         <Dropdown

@@ -20,21 +20,21 @@ export function createBlock(block: CreateBlock) {
  * 修改Block
  */
 export function updateBlock(block: UpdateBlock) {
-  return http.patch(`block/update/${block.id}`, block)
+  return http.patch(`block/${block.id}`, block)
 }
 
 /**
  * 删除Block
  */
 export function delBlock(id: string) {
-  return http.delete(`block/delete/${id}`)
+  return http.delete(`block/${id}`)
 }
 
 /**
  * 修改Block布局
  */
 export function updateLayout(id: string, layout: Layout[]) {
-  return http.patch(`block/update/${id}`, { layout })
+  return http.patch(`block/${id}`, { layout })
 }
 
 /**

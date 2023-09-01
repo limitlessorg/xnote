@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Payload } from 'src/interface';
 import { ReqPayload } from 'src/share/decorators/space.decorator';
@@ -93,7 +101,7 @@ export class BlockController {
    * @param data 修改的数据
    * @returns 结果
    */
-  @Patch('update/:id')
+  @Patch('/:id')
   update(
     @Param('id') id: string,
     @Body() data: Prisma.BlockUpdateInput,
@@ -103,6 +111,23 @@ export class BlockController {
       where: { id, spaceId: payload.spaceId },
       data,
     });
+  }
+
+  /**
+   * 删除
+   * @param id 主键
+   * @param payload 载荷数据
+   * @returns 结果
+   */
+  @Delete('/:id')
+  async delete(@Param('id') id: string, @ReqPayload() payload: Payload) {
+    const deleteItems = this.prismaSrv.block.deleteMany({
+      where: { spaceId: payload.spaceId, container: { some: { id } } },
+    });
+    const deleteBlock = this.prismaSrv.block.delete({
+      where: { id, spaceId: payload.spaceId },
+    });
+    return await this.prismaSrv.$transaction([deleteItems, deleteBlock]);
   }
 
   /**

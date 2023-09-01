@@ -28,6 +28,7 @@ export type CreateBlock = {
   parentId?: string
   containerId?: string
   layout?: Layout[]
+  remark?: string
 }
 
 /**
@@ -39,4 +40,5 @@ export type UpdateBlock = {
   content?: any
   parentId?: string
   containerId?: string
+  remark?: string
 }
