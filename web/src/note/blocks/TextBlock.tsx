@@ -59,7 +59,8 @@ const TextBlock: React.FC<BlockProps> = ({
         const newBlock: Block = {
           ...block,
           content: editor.getJSON(),
-          blockType: BlockType.Text
+          blockType: BlockType.Text,
+          remark: editor.getText()
         }
         onBlockChange(newBlock)
       }

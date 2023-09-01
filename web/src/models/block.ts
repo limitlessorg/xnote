@@ -16,6 +16,7 @@ export type Block = {
   layout: Layout[]
   // 容器项
   items: Block[]
+  remark?: string
 }
 
 /**

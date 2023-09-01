@@ -58,6 +58,7 @@ model Block {
   container Block[]  @relation("ContainerItems")
   items     Block[]  @relation("ContainerItems")
   updatedAt DateTime @updatedAt
+  remark    String?  @db.Text
 
   @@map("x_block")
 }

@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Payload } from 'src/interface';
 import { ReqPayload } from 'src/share/decorators/space.decorator';
@@ -121,17 +113,14 @@ export class BlockController {
    */
   @Get('search/:value')
   async search(@Param('value') value: string, @ReqPayload() payload: Payload) {
-    let blocks = await this.prismaSrv.block.findMany({
+    return this.prismaSrv.block.findMany({
       where: {
         spaceId: payload.spaceId,
+        remark: { contains: value },
       },
       include: {
         container: true,
       },
     });
-    blocks = blocks.filter((b) => {
-      return b.content && JSON.stringify(b.content).indexOf(value) > -1;
-    });
-    return blocks;
   }
 }
