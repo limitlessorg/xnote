@@ -34,3 +34,7 @@ prisma generate
 ```bash
 npm start
 ``` 
+
+## 技术栈
+[Nestjs](https://docs.nestjs.cn/)
+[Prisma](https://www.prisma.io/)

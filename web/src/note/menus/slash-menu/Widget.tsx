@@ -12,7 +12,6 @@ import {
 } from 'react-icons/ai'
 import {
   RiAlignLeft,
-  RiArchiveDrawerLine,
   RiBookOpenLine,
   RiBookReadLine,
   RiCalendar2Line,
@@ -20,8 +19,6 @@ import {
   RiFileWordLine,
   RiFolderMusicLine,
   RiGithubFill,
-  RiGovernmentLine,
-  RiHandHeartFill,
   RiKeyboardBoxLine,
   RiMapPin2Line,
   RiMarkdownLine,
@@ -228,35 +225,6 @@ const SlashMenuWidget: React.FC<MenuProps> = ({
           icon: <RiCodeSSlashFill />,
           click: () => {
             editorChange({ type: 'code', value: '' }, BlockType.CodeEditor)
-          }
-        }
-      ]
-    },
-    {
-      title: '资产云服务',
-      items: [
-        {
-          title: '公益仓',
-          description: '公益仓',
-          icon: <RiHandHeartFill />,
-          click: (editor: Editor) => {
-            console.log(editor)
-          }
-        },
-        {
-          title: '房产管理',
-          description: '房产管理',
-          icon: <RiGovernmentLine />,
-          click: (editor: Editor) => {
-            console.log(editor)
-          }
-        },
-        {
-          title: '资产管理',
-          description: '资产管理',
-          icon: <RiArchiveDrawerLine />,
-          click: (editor: Editor) => {
-            console.log(editor)
           }
         }
       ]

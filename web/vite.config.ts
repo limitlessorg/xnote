@@ -27,7 +27,6 @@ export default defineConfig({
         manualChunks: {
           echarts: ['echarts'],
           excalidraw: ['@excalidraw/excalidraw'],
-          html2canvas: ['html2canvas'],
           emojimart: ['emoji-mart']
         }
       }
