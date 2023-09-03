@@ -5,7 +5,6 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { Collection, Db } from 'mongodb';
 import { AuthService } from 'src/auth/auth.service';
 import { Server } from 'ws';
 import { WsJwtAuthGuard } from './ws-jwt-auth.guard';
@@ -13,8 +12,7 @@ import { WsJwtAuthGuard } from './ws-jwt-auth.guard';
 @WebSocketGateway(3001)
 @UseGuards(WsJwtAuthGuard)
 export class WsGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  private db!: Db;
-  private coll: Collection;
+  // 存放会话
   private map: Map<string, any> = new Map();
   constructor(private authSrv: AuthService) {}
 

@@ -12,7 +12,7 @@ import {
 import ImgCrop from 'antd-img-crop'
 import { RcFile, UploadChangeParam } from 'antd/es/upload'
 import { User } from 'models/user'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { patchUser } from 'repo'
 import useSpaceStore from 'store/space'
 
@@ -21,6 +21,7 @@ import useSpaceStore from 'store/space'
  */
 const PersonSetting: React.FC = () => {
   const { user, setUser } = useSpaceStore()
+  const [logo, setLogo] = useState()
   const [form] = Form.useForm()
   const formRef = useRef(null)
 
@@ -38,6 +39,11 @@ const PersonSetting: React.FC = () => {
       return
     }
     if (info.file.status === 'done') {
+      console.log(
+        'info.file.response?.data?.url',
+        info.file.response?.data?.url
+      )
+      setLogo(info.file.response?.data?.url)
       form.setFieldValue('logo', info.file.response?.data?.url)
     }
   }
@@ -80,8 +86,8 @@ const PersonSetting: React.FC = () => {
             beforeUpload={beforeUpload}
             onChange={handleChange}
           >
-            {user?.logo ? (
-              <Avatar src={user?.logo} alt="avatar" size={102} />
+            {logo || user?.logo ? (
+              <Avatar src={logo || user?.logo} alt="avatar" size={102} />
             ) : (
               <div>
                 <PlusOutlined rev={'default'} />

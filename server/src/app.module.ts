@@ -22,6 +22,7 @@ import { SpaceService } from './space/space.service';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { WsModule } from './ws/ws.module';
+import { MinioModule } from './minio/minio.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { WsModule } from './ws/ws.module';
       timeout: 5000,
     }),
     WsModule,
+    MinioModule,
   ],
   controllers: [
     AppController,

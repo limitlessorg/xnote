@@ -46,7 +46,7 @@ export default defineConfig({
         ws: true
       },
       '/oss': {
-        target: 'http://139.159.140.195:80/', // 对象存储接口
+        target: 'http://localhost:4000/api/', // 对象存储接口
         changeOrigin: true, // 是否允许跨域
         ws: true
       }

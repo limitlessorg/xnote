@@ -62,3 +62,18 @@ model Block {
 
   @@map("x_block")
 }
+
+// 对象存储元数据
+model OssFile {
+  uid              String   @id @default(nanoid()) @db.VarChar(32)
+  size             Int
+  name             String   @db.VarChar(255)
+  filename         String   @db.VarChar(255)
+  lastModifiedDate DateTime @updatedAt
+  url              String   @db.VarChar(255)
+  thumbUrl         String   @db.VarChar(255)
+  status           String   @db.VarChar(16)
+  error            String?  @db.VarChar(512)
+  userId           String?  @db.VarChar(64)
+  spaceId          String?  @db.VarChar(64)
+}
