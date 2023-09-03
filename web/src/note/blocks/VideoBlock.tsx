@@ -40,6 +40,7 @@ const VideoMenu: React.FC<BlockProps> = ({ block, onBlockChange }) => {
     multiple: false,
     action: DEFAULT_OSS_URL,
     accept: allowedFileTypes.join(','),
+    headers: { token: localStorage.getItem('token') as string },
     onChange(info) {
       const { status, response } = info.file
       if (status === 'done') {
