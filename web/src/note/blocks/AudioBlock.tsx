@@ -3,6 +3,7 @@ import Dragger from 'antd/es/upload/Dragger'
 import React, { useState } from 'react'
 import { RiLinksLine, RiUpload2Line, RiVolumeUpFill } from 'react-icons/ri'
 import { BlockProps, BlockType } from '.'
+import { DEFAULT_OSS_URL } from 'types'
 
 const allowedFileTypes = [
   'audio/mpeg',
@@ -40,7 +41,7 @@ const AudioMenu: React.FC<BlockProps> = ({ block, onBlockChange }) => {
   const uploadProps: UploadProps = {
     name: 'file',
     multiple: false,
-    action: '/oss/upload',
+    action: DEFAULT_OSS_URL,
     accept: allowedFileTypes.join(','),
     onChange(info) {
       const { status, response } = info.file

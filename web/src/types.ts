@@ -3,6 +3,9 @@ import { MenuProps } from 'antd'
 import { ItemType as AntdItemType } from 'antd/es/menu/hooks/useItems'
 import { DataNode as AntdDataNode } from 'antd/es/tree'
 
+// 文件存储默认地址
+export const DEFAULT_OSS_URL = '/api/oss/upload'
+
 /**
  * 菜单项
  */

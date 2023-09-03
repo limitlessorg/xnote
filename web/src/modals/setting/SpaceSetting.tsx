@@ -15,6 +15,7 @@ import React, { useState } from 'react'
 import { patchSpace } from 'repo/space'
 import useSpaceStore from 'store/space'
 import { useDebounceFn } from '@ant-design/pro-utils'
+import { DEFAULT_OSS_URL } from 'types'
 
 /**
  * 空间设置
@@ -83,7 +84,7 @@ const SpaceSetting: React.FC = () => {
                 <Upload
                   name="file"
                   showUploadList={false}
-                  action="/oss/upload"
+                  action={DEFAULT_OSS_URL}
                   headers={{ token: localStorage.getItem('token') as string }}
                   beforeUpload={beforeUpload}
                   onChange={(info) => handleChange(info, space)}

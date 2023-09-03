@@ -3,6 +3,7 @@ import Dragger from 'antd/es/upload/Dragger'
 import React, { useState } from 'react'
 import { RiFileAddFill, RiLinksLine, RiUpload2Line } from 'react-icons/ri'
 import { BlockProps, BlockType } from '.'
+import { DEFAULT_OSS_URL } from 'types'
 
 /**
  * 文件块内容
@@ -28,7 +29,7 @@ const FileMenu: React.FC<BlockProps> = ({ block, onBlockChange }) => {
   const uploadProps: UploadProps = {
     name: 'file',
     multiple: false,
-    action: '/oss/upload',
+    action: DEFAULT_OSS_URL,
     onChange(info) {
       const { status, response } = info.file
       if (status === 'done') {

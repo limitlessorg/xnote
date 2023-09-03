@@ -2,6 +2,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { Upload, message } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import { RcFile, UploadProps } from 'antd/es/upload'
+import { DEFAULT_OSS_URL } from 'types'
 
 const beforeUpload = (file: RcFile) => {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
@@ -30,7 +31,7 @@ const UploadLogo: React.FC<UploadLogoProp> = ({ logo, handleChange }) => {
         name="file"
         listType="picture-card"
         showUploadList={false}
-        action="/oss/upload"
+        action={DEFAULT_OSS_URL}
         headers={{ token: localStorage.getItem('token') as string }}
         beforeUpload={beforeUpload}
         onChange={handleChange}

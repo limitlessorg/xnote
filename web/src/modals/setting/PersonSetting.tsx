@@ -15,6 +15,7 @@ import { User } from 'models/user'
 import React, { useEffect, useRef, useState } from 'react'
 import { patchUser } from 'repo'
 import useSpaceStore from 'store/space'
+import { DEFAULT_OSS_URL } from 'types'
 
 /**
  * 个人设置
@@ -81,7 +82,7 @@ const PersonSetting: React.FC = () => {
             name="file"
             listType="picture-circle"
             showUploadList={false}
-            action="/oss/upload"
+            action={DEFAULT_OSS_URL}
             headers={{ token: localStorage.getItem('token') as string }}
             beforeUpload={beforeUpload}
             onChange={handleChange}
