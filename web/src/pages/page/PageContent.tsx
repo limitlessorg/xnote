@@ -85,7 +85,7 @@ const PageContent: React.FC = () => {
   }
 
   // 更新去抖
-  const { run } = useDebounceFn(updateBlock, 500)
+  const { run } = useDebounceFn(updateBlock, 300)
   /**
    * 修改块内容
    */
@@ -118,7 +118,7 @@ const PageContent: React.FC = () => {
 
   useDebounce(
     () => updateLayout(id as string, layout).then((res) => console.log(res)),
-    200,
+    300,
     [layout]
   )
 

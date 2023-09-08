@@ -28,10 +28,10 @@ npm install
 ```
 
 3. 修改.env 配置
-创建 .env 文件，把 .env.example 文件内容拷贝至 .env，
-修改 DATABASE_URL，设置数据库类型、用户名、密码、地址，参考 [Prisma 文档](https://www.prisma.io/)
-配置认证相关密钥
-配置MinIO连接
+- 创建 .env 文件，把 .env.example 文件内容拷贝至 .env，
+- 修改 DATABASE_URL，设置数据库类型、用户名、密码、地址，参考 [Prisma 文档](https://www.prisma.io/)
+- 配置认证相关密钥
+- 配置MinIO连接
 
 4. 初始化数据库
 ```bash

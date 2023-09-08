@@ -143,9 +143,13 @@ const ImageBlock: React.FC<BlockProps> = ({
 }) => {
   const content: ImageContent = block.content as ImageContent
   return (
-    <>
+    <div>
       {content.url && (
-        <Image className="w-full" src={content.url} alt={content.url} />
+        <img
+          className="h-full w-full object-contain"
+          src={content.url}
+          alt={content.url}
+        />
       )}
       {!content.url && (
         <Popover
@@ -170,7 +174,7 @@ const ImageBlock: React.FC<BlockProps> = ({
           </div>
         </Popover>
       )}
-    </>
+    </div>
   )
 }
 
