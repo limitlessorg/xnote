@@ -8,7 +8,7 @@ import { useDebounce } from 'react-use'
 import {
   createBlock,
   delBlock,
-  findOne,
+  findOneBlock,
   updateBlock,
   updateLayout
 } from 'repo/block'
@@ -31,7 +31,7 @@ const PageContent: React.FC = () => {
   const [items, setItems] = useState<Block[]>([])
 
   const init = async (id: string) => {
-    const block = await findOne(id)
+    const block = await findOneBlock(id)
     setPage(block)
     setLayout(block.layout || [])
     setItems(block.items)

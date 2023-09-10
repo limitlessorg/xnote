@@ -8,15 +8,15 @@ import ResizeSider from 'comps/ResizeSider'
 import Header from 'pages/page/header'
 import { BlockType } from 'note/blocks'
 import TitleRender from 'note/components/TitleRender'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import {
   createBlock,
   delBlock,
-  findOne,
+  findOneBlock,
   treeBlock,
   updateLayout
-} from 'repo/block'
+} from 'repo'
 import useBreadcrumbStore from 'store/breadcrumb'
 import { DataNode } from 'types'
 import CreatePageBtn from './CreatePageBtn'
@@ -44,19 +44,13 @@ const Page: React.FC = () => {
   const queryClient = useQueryClient()
 
   // 合并查询
-  const { data: nodes, refetch } = useQuery({
+  const { data: nodes } = useQuery({
     queryKey: ['treeBlock', space?.id],
-    queryFn: treeBlock
+    queryFn: treeBlock,
+    onSuccess: (data) => {
+      setNodes(data || [])
+    }
   })
-
-  // 刷新面包屑
-  useEffect(() => {
-    setNodes(nodes || [])
-  }, [nodes, setNodes])
-
-  useEffect(() => {
-    refetch()
-  }, [refetch, space])
 
   // 创建块
   const create = (parentBlock?: Block) => {
@@ -132,7 +126,7 @@ const Page: React.FC = () => {
         }
       })
     } else if (operationKey == 'ExportPage') {
-      findOne(node.key as string).then((res) => {
+      findOneBlock(node.key as string).then((res) => {
         // 页面保存为JSON文件
         const blob = new Blob([JSON.stringify(res)], {
           type: 'text/plain;charset=utf-8'
@@ -186,6 +180,7 @@ const Page: React.FC = () => {
               block
               size="large"
               icon={<AppstoreOutlined rev={undefined} />}
+              onClick={() => navigate('/template')}
             >
               模板中心
             </Button>

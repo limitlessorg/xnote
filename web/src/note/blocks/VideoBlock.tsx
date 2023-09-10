@@ -2,8 +2,8 @@ import { Button, Input, Popover, Tabs, UploadProps, message } from 'antd'
 import Dragger from 'antd/es/upload/Dragger'
 import React, { useState } from 'react'
 import { RiLinksLine, RiUpload2Line, RiVolumeUpFill } from 'react-icons/ri'
-import { BlockProps, BlockType } from '.'
 import { DEFAULT_OSS_URL } from 'types'
+import { BlockProps, BlockType } from '.'
 
 const allowedFileTypes = [
   'video/mp4',

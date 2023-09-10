@@ -5,7 +5,7 @@ import { Block, UpdateBlock } from 'models/block'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDebounce } from 'react-use'
-import { updateBlock } from 'repo/block'
+import { updateBlock } from 'repo'
 import { BlockType } from '../blocks'
 
 interface ICreateIndexProps {

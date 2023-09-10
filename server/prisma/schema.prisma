@@ -22,6 +22,7 @@ model User {
   logo     String? @map("logo") @db.VarChar(255)
   remark   String? @map("remark") @db.VarChar(255)
   spaces   Space[]
+  templates   Template[]
 
   @@map("x_user")
 }
@@ -59,8 +60,34 @@ model Block {
   items     Block[]  @relation("ContainerItems")
   updatedAt DateTime @updatedAt
   remark    String?  @db.Text
+  templates    Template[]
 
   @@map("x_block")
+}
+
+// 模板
+model Template {
+  id          String   @id @default(nanoid()) @db.VarChar(32)
+  blockId     String   @db.VarChar(32)
+  block       Block    @relation(fields: [blockId], references: [id])
+  userId      String   @db.VarChar(32)
+  user        User     @relation(fields: [userId], references: [id])
+  title       String   @db.VarChar(255)
+  scope       String   @db.VarChar(32)
+  category    String   @db.VarChar(255)
+  updatedAt   DateTime @updatedAt
+  description String?  @db.Text
+
+  @@map("x_template")
+}
+
+// 类别
+model Category {
+  id   String @id @default(nanoid()) @db.VarChar(32)
+  code String @db.VarChar(64)
+  name String @db.VarChar(255)
+
+  @@map("x_category")
 }
 
 // 对象存储元数据

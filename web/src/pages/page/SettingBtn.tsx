@@ -1,18 +1,11 @@
 import { SettingOutlined } from '@ant-design/icons'
-import { Button, Modal, Tooltip } from 'antd'
-import Setting from 'modals/setting'
+import { Button, Tooltip } from 'antd'
+import SettingModal from 'modals/setting'
 import React, { useState } from 'react'
 
 const SettingBtn: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
-  const handleOk = () => {
-    setIsModalOpen(false)
-  }
-
-  const handleCancel = () => {
-    setIsModalOpen(false)
-  }
   return (
     <>
       <Tooltip title="打开设置" placement="bottom" mouseLeaveDelay={0}>
@@ -21,22 +14,11 @@ const SettingBtn: React.FC = () => {
             type="text"
             size="large"
             icon={<SettingOutlined rev={undefined} />}
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setOpen(true)}
           />
         </div>
       </Tooltip>
-      <Modal
-        title="设置"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        destroyOnClose={true}
-        maskClosable={false}
-        width={800}
-        footer={null}
-      >
-        <Setting />
-      </Modal>
+      <SettingModal open={open} setOpen={setOpen} />
     </>
   )
 }

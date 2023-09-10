@@ -23,6 +23,10 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { WsModule } from './ws/ws.module';
 import { MinioModule } from './minio/minio.module';
+import { TemplateController } from './template/template.controller';
+import { TemplateService } from './template/template.service';
+import { CategoryService } from './category/category.service';
+import { CategoryController } from './category/category.controller';
 
 @Module({
   imports: [
@@ -39,6 +43,8 @@ import { MinioModule } from './minio/minio.module';
     UserController,
     BlockController,
     SpaceController,
+    TemplateController,
+    CategoryController,
   ],
   providers: [
     AppService,
@@ -50,6 +56,8 @@ import { MinioModule } from './minio/minio.module';
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     BlockService,
     SpaceService,
+    TemplateService,
+    CategoryService,
   ],
 })
 export class AppModule implements NestModule {

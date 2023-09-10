@@ -4,8 +4,7 @@ import { UploadChangeParam, UploadFile } from 'antd/es/upload'
 import UploadLogo from 'comps/UploadLogo'
 import { Space } from 'models/space'
 import React, { useState } from 'react'
-import { getAppData } from 'repo'
-import { createSpace } from 'repo/space'
+import { createSpace, getAppData } from 'repo'
 import useSpaceStore from 'store/space'
 
 export type CreateSpaceModalProps = {
@@ -14,7 +13,7 @@ export type CreateSpaceModalProps = {
 }
 
 /**
- * 创建工作空间(Team和Corporation)
+ * 创建工作空间
  */
 const CreateSpaceModal: React.FC<CreateSpaceModalProps> = ({
   open,

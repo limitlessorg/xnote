@@ -6,7 +6,7 @@ import { Space, SpaceType, SpaceTypeObject } from 'models/space'
 import { useState } from 'react'
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
-import { getAppData } from 'repo/auth'
+import { getAppData } from 'repo'
 import useSpaceStore from 'store/space'
 
 /**
@@ -71,7 +71,7 @@ const WorkSpace: React.FC = () => {
   )
 
   const renderContent = () => (
-    <div className="w-44">
+    <div className="w-48">
       {items.map(renderSpaceItem)}
       <Divider className="m-1" />
       <Button

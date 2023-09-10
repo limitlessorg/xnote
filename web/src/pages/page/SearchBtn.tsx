@@ -1,18 +1,14 @@
 import { SearchOutlined } from '@ant-design/icons'
-import { Button, Modal, Tooltip } from 'antd'
-import Search from 'modals/Search'
+import { Button, Tooltip } from 'antd'
+import SearchModal from 'modals/SearchModal'
 import React, { useState } from 'react'
 
+/**
+ * 搜索按钮
+ */
 const SearchBtn: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
-  const handleOk = () => {
-    setIsModalOpen(false)
-  }
-
-  const handleCancel = () => {
-    setIsModalOpen(false)
-  }
   return (
     <>
       <Tooltip title="搜索页面" placement="bottom" mouseLeaveDelay={0}>
@@ -21,22 +17,11 @@ const SearchBtn: React.FC = () => {
             type="text"
             size="large"
             icon={<SearchOutlined rev={undefined} />}
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setOpen(true)}
           />
         </div>
       </Tooltip>
-      <Modal
-        title="搜索"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        destroyOnClose={true}
-        maskClosable={false}
-        width={700}
-        footer={null}
-      >
-        <Search callback={() => setIsModalOpen(false)} />
-      </Modal>
+      <SearchModal open={open} setOpen={setOpen} />
     </>
   )
 }

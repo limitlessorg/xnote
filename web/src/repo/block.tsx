@@ -40,14 +40,14 @@ export function updateLayout(id: string, layout: Layout[]) {
 /**
  * 查找Block列表
  */
-export function findMany(where: any = {}) {
+export function findManyBlock(where: any = {}) {
   return http.post(`block/findMany`, where)
 }
 
 /**
  * 查找单个Block
  */
-export function findOne(id: string) {
+export function findOneBlock(id: string) {
   return http.get(`block/${id}`)
 }
 
@@ -62,7 +62,7 @@ export function searchBlock(value: string) {
  * 查找Block树
  */
 export function treeBlock() {
-  return findMany({ blockType: 'page' }).then((blocks) => {
+  return findManyBlock({ blockType: 'page' }).then((blocks) => {
     return arrToTreeNode(blocks, {
       cb: (item) => {
         item.path = `/page/${item.id}`

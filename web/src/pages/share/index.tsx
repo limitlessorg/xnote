@@ -5,23 +5,23 @@ import PageHeader from 'note/components/PageHeader'
 import React, { useEffect, useState } from 'react'
 import GridLayout from 'react-grid-layout'
 import { useParams } from 'react-router-dom'
-import { findOne } from 'repo/block'
+import { findOneBlock } from 'repo'
 
 /**
  * 主页
  */
 const Home: React.FC = () => {
-  const { id } = useParams()
+  const { id: shareId } = useParams()
   const [page, setPage] = useState<Block>()
 
   const init = async (id: string) => {
-    const block = await findOne(id)
+    const block = await findOneBlock(id)
     setPage(block)
   }
 
   useEffect(() => {
-    init(id as string)
-  }, [id])
+    init(shareId as string)
+  }, [shareId])
 
   return (
     <div className="mx-10">

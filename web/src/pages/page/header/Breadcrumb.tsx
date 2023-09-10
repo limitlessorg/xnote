@@ -65,7 +65,7 @@ const Breadcrumb: React.FC = () => {
           trigger={['hover']}
           arrow={false}
         >
-          <NavLink to={`/page/${item.path}`}>
+          <NavLink to={`/${item.path}`}>
             <div className="flex">
               <div className="pr-1">
                 <Icon icon={item.icon} />

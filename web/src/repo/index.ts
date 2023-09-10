@@ -1,5 +1,8 @@
 export * from './auth'
 export * from './block'
+export * from './category'
+export * from './space'
+export * from './template'
 export * from './user'
 
 /**
