@@ -30,7 +30,7 @@ const FileMenu: React.FC<BlockProps> = ({ block, onBlockChange }) => {
     name: 'file',
     multiple: false,
     action: DEFAULT_OSS_URL,
-    headers: { token: localStorage.getItem('token') as string },
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     onChange(info) {
       const { status, response } = info.file
       if (status === 'done') {

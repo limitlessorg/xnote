@@ -12,6 +12,7 @@ import { Payload } from 'src/interface';
 import { ReqPayload } from 'src/share/decorators/space.decorator';
 import { PrismaService } from 'src/share/service/prisma.service';
 import { BlockService } from './block.service';
+import { SkipAuthGuard } from 'src/share/decorators/skip-guard.decorator';
 
 @Controller('block')
 export class BlockController {
@@ -27,9 +28,11 @@ export class BlockController {
    * @returns Block块
    */
   @Get('/:id')
+  @SkipAuthGuard()
   get(@Param('id') id: string, @ReqPayload() payload: Payload) {
     return this.prismaSrv.block.findFirst({
-      where: { id, spaceId: payload.spaceId },
+      // , spaceId: payload.spaceId
+      where: { id },
       include: {
         items: true,
       },

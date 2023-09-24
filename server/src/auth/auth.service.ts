@@ -118,6 +118,7 @@ export class AuthService {
     token: string,
     options: JwtSignOptions = { secret: process.env.TOKEN_SECRET },
   ): any {
+    token = token.replace('Bearer ', '');
     return this.jwtSrv.verify(token, options);
   }
 }

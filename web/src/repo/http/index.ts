@@ -24,9 +24,9 @@ export class Http {
     this.instance.interceptors.request.use(
       (config: any) => {
         // 一般会请求拦截里面加token，用于后端的验证
-        const token = localStorage.getItem('token')
+        const token = `Bearer ${localStorage.getItem('token')}`
         if (token && config.headers) {
-          config.headers!.token = token
+          config.headers!.Authorization = token
         }
         return config
       },
@@ -56,7 +56,7 @@ export class Http {
           case 401:
             msg = '未授权，请重新登录(401)'
             // 这里可以做清空storage并跳转到登录页的操作
-            window.location.replace(`/passport/login`)
+            // window.location.replace(`/passport/login`)
             break
           case 403:
             msg = '拒绝访问(403)'

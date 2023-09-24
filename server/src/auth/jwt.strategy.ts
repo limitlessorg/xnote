@@ -9,6 +9,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       // 设置获取token方式（请求头token 或者 请求体token）
       jwtFromRequest: ExtractJwt.fromExtractors([
+        ExtractJwt.fromAuthHeaderAsBearerToken(),
         ExtractJwt.fromHeader(process.env.TOKEN_HEADER_NAME),
         ExtractJwt.fromBodyField(process.env.TOKEN_HEADER_NAME),
         ExtractJwt.fromUrlQueryParameter(process.env.TOKEN_HEADER_NAME),
